@@ -134,7 +134,7 @@ export default function Home() {
 							removeWrapper
 							alt="Card background"
 							className="z-0 w-full h-full object-cover"
-							src="/images/card-example-4.jpeg"
+							src="../public/images/image1.jpg"
 						/>
 					</Card>
 					<Card className="col-span-12 sm:col-span-4 h-[300px]">
@@ -150,7 +150,7 @@ export default function Home() {
 							removeWrapper
 							alt="Card background"
 							className="z-0 w-full h-full object-cover"
-							src="/images/card-example-3.jpeg"
+							src="../public/images/image3.jpg"
 						/>
 					</Card>
 					<Card className="col-span-12 sm:col-span-4 h-[300px]">
@@ -166,7 +166,7 @@ export default function Home() {
 							removeWrapper
 							alt="Card background"
 							className="z-0 w-full h-full object-cover"
-							src="/images/card-example-2.jpeg"
+							src="../public/images/image2.jpg"
 						/>
 					</Card>
 					<Card
@@ -181,7 +181,7 @@ export default function Home() {
 							removeWrapper
 							alt="Card example background"
 							className="z-0 w-full h-full scale-125 -translate-y-6 object-cover"
-							src="/images/card-example-6.jpeg"
+							src="../public/images/image4.jpg"
 						/>
 						<CardFooter className="absolute bg-white/30 bottom-0 border-t-1 border-zinc-100/50 z-10 justify-between">
 							<div>
@@ -194,7 +194,7 @@ export default function Home() {
 								radius="full"
 								size="sm"
 							>
-								Notify Me
+								Login/Signup
 							</Button>
 						</CardFooter>
 					</Card>
@@ -221,7 +221,7 @@ export default function Home() {
 								<Image
 									alt="Breathing app icon"
 									className="rounded-full w-10 h-11 bg-black"
-									src="/images/breathing-app-icon.jpeg"
+									src="../public/images/image5.jpg"
 								/>
 								<div className="flex flex-col">
 									<p className="text-tiny text-white/60">Breathing App</p>
@@ -231,7 +231,7 @@ export default function Home() {
 								</div>
 							</div>
 							<Button radius="full" size="sm">
-								Get App
+								Agency Registration/Login
 							</Button>
 						</CardFooter>
 					</Card>
@@ -250,22 +250,22 @@ export default function Home() {
           width={40}
         />
         <div className="flex flex-col">
-          <p className="text-md">NextUI</p>
-          <p className="text-small text-default-500">nextui.org</p>
+          <p className="text-md">Disaster</p>
+          <p className="text-small text-default-500">Our Aim</p>
         </div>
       </CardHeader>
       <Divider/>
       <CardBody>
-        <p>Make beautiful websites regardless of your design experience.</p>
+        <p>content</p>
       </CardBody>
       <Divider/>
       <CardFooter>
         <Link
           isExternal
           showAnchorIcon
-          href="https://github.com/nextui-org/nextui"
+          href="login page link here"
         >
-          Visit source code on GitHub.
+          Login Now
         </Link>
       </CardFooter>
     </Card>
