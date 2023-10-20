@@ -1,55 +1,276 @@
+// 			import NextLink from "next/link";
+// import { Link } from "@nextui-org/link";
+// import { Snippet } from "@nextui-org/snippet";
+// import { Code } from "@nextui-org/code"
+// import { button as buttonStyles } from "@nextui-org/theme";
+// import { siteConfig } from "@/config/site";
+// import { title, subtitle } from "@/components/primitives";
+// import { GithubIcon } from "@/components/icons";
+// import { Carousel } from "@/components/carousel/carousel";
+// import { Button } from "@nextui-org/button"
+// import {Image} from "@nextui-org/image"
+// import {Card, CardHeader, CardBody, CardFooter } from "@nextui-org/card";
+// import {Divider} from "@nextui-org/react"
+// export default function Home() {
+// 	return (
+// <section>
+// 		<div className="max-w-[900px] gap-2 grid grid-cols-12 grid-rows-2 px-8">
+// 		<Card className="col-span-12 sm:col-span-4 h-[300px]">
+// 		  <CardHeader className="absolute z-10 top-1 flex-col !items-start">
+// 			<p className="text-tiny text-white/60 uppercase font-bold">What to watch</p>
+// 			<h4 className="text-white font-medium text-large">Stream the Acme event</h4>
+// 		  </CardHeader>
+// 		  <Image
+// 			removeWrapper
+// 			alt="Card background"
+// 			className="z-0 w-full h-full object-cover"
+// 			src="/images/card-example-4.jpeg"
+// 		  />
+// 		</Card>
+// 		<Card className="col-span-12 sm:col-span-4 h-[300px]">
+// 		  <CardHeader className="absolute z-10 top-1 flex-col !items-start">
+// 			<p className="text-tiny text-white/60 uppercase font-bold">Plant a tree</p>
+// 			<h4 className="text-white font-medium text-large">Contribute to the planet</h4>
+// 		  </CardHeader>
+// 		  <Image
+// 			removeWrapper
+// 			alt="Card background"
+// 			className="z-0 w-full h-full object-cover"
+// 			src="/images/card-example-3.jpeg"
+// 		  />
+// 		</Card>
+// 		<Card className="col-span-12 sm:col-span-4 h-[300px]">
+// 		  <CardHeader className="absolute z-10 top-1 flex-col !items-start">
+// 			<p className="text-tiny text-white/60 uppercase font-bold">Supercharged</p>
+// 			<h4 className="text-white font-medium text-large">Creates beauty like a beast</h4>
+// 		  </CardHeader>
+// 		  <Image
+// 			removeWrapper
+// 			alt="Card background"
+// 			className="z-0 w-full h-full object-cover"
+// 			src="/images/card-example-2.jpeg"
+// 		  />
+// 		</Card>
+// 		<Card isFooterBlurred className="w-full h-[300px] col-span-12 sm:col-span-5">
+// 		  <CardHeader className="absolute z-10 top-1 flex-col items-start">
+// 			<p className="text-tiny text-white/60 uppercase font-bold">New</p>
+// 			<h4 className="text-black font-medium text-2xl">Acme camera</h4>
+// 		  </CardHeader>
+// 		  <Image
+// 			removeWrapper
+// 			alt="Card example background"
+// 			className="z-0 w-full h-full scale-125 -translate-y-6 object-cover"
+// 			src="/images/card-example-6.jpeg"
+// 		  />
+// 		  <CardFooter className="absolute bg-white/30 bottom-0 border-t-1 border-zinc-100/50 z-10 justify-between">
+// 			<div>
+// 			  <p className="text-black text-tiny">Available soon.</p>
+// 			  <p className="text-black text-tiny">Get notified.</p>
+// 			</div>
+// 			<Button className="text-tiny" color="primary" radius="full" size="sm">
+// 			  Notify Me
+// 			</Button>
+// 		  </CardFooter>
+// 		</Card>
+// 		<Card isFooterBlurred className="w-full h-[300px] col-span-12 sm:col-span-7">
+// 		  <CardHeader className="absolute z-10 top-1 flex-col items-start">
+// 			<p className="text-tiny text-white/60 uppercase font-bold">Your day your way</p>
+// 			<h4 className="text-white/90 font-medium text-xl">Your checklist for better sleep</h4>
+// 		  </CardHeader>
+// 		  <Image
+// 			removeWrapper
+// 			alt="Relaxing app background"
+// 			className="z-0 w-full h-full object-cover"
+// 			src="/images/card-example-5.jpeg"
+// 		  />
+// 		  <CardFooter className="absolute bg-black/40 bottom-0 z-10 border-t-1 border-default-600 dark:border-default-100">
+// 			<div className="flex flex-grow gap-2 items-center">
+// 			  <Image
+// 				alt="Breathing app icon"
+// 				className="rounded-full w-10 h-11 bg-black"
+// 				src="/images/breathing-app-icon.jpeg"
+// 			  />
+// 			  <div className="flex flex-col">
+// 				<p className="text-tiny text-white/60">Breathing App</p>
+// 				<p className="text-tiny text-white/60">Get a good night's sleep.</p>
+// 			  </div>
+// 			</div>
+// 			<Button radius="full" size="sm">Get App</Button>
+// 		  </CardFooter>
+// 		</Card>
+// 			</div>
+// 			<Divider className="my-4" orientation="vertical"/>
+// 			</section>
+// 	);
+// }
+
 import NextLink from "next/link";
 import { Link } from "@nextui-org/link";
 import { Snippet } from "@nextui-org/snippet";
-import { Code } from "@nextui-org/code"
+import { Code } from "@nextui-org/code";
 import { button as buttonStyles } from "@nextui-org/theme";
 import { siteConfig } from "@/config/site";
 import { title, subtitle } from "@/components/primitives";
 import { GithubIcon } from "@/components/icons";
-
+import { Carousel } from "@/components/carousel/carousel";
+import { Button } from "@nextui-org/button";
+import { Image } from "@nextui-org/image";
+import { Card, CardHeader, CardBody, CardFooter } from "@nextui-org/card";
+import { Divider } from "@nextui-org/divider";
 export default function Home() {
 	return (
-		<section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-			<div className="inline-block max-w-lg text-center justify-center">
-				<h1 className={title()}>Make&nbsp;</h1>
-				<h1 className={title({ color: "violet" })}>beautiful&nbsp;</h1>
-				<br />
-				<h1 className={title()}>
-					websites regardless of your design experience.
-				</h1>
-				
-				<h2 className={subtitle({ class: "mt-4" })}>
-					Beautiful, fast and modern React UI library.
-				</h2>
+		<div className="grid grid-cols-12 grid-rows-1 ">
+			<div className="col-span-7">
+				<div className="gap-2 grid grid-cols-12 grid-rows-2 ">
+					<Card className="col-span-12 sm:col-span-4 h-[300px]">
+						<CardHeader className="absolute z-10 top-1 flex-col !items-start">
+							<p className="text-tiny text-white/60 uppercase font-bold">
+								What to watch
+							</p>
+							<h4 className="text-white font-medium text-large">
+								Stream the Acme event
+							</h4>
+						</CardHeader>
+						<Image
+							removeWrapper
+							alt="Card background"
+							className="z-0 w-full h-full object-cover"
+							src="/images/card-example-4.jpeg"
+						/>
+					</Card>
+					<Card className="col-span-12 sm:col-span-4 h-[300px]">
+						<CardHeader className="absolute z-10 top-1 flex-col !items-start">
+							<p className="text-tiny text-white/60 uppercase font-bold">
+								Plant a tree
+							</p>
+							<h4 className="text-white font-medium text-large">
+								Contribute to the planet
+							</h4>
+						</CardHeader>
+						<Image
+							removeWrapper
+							alt="Card background"
+							className="z-0 w-full h-full object-cover"
+							src="/images/card-example-3.jpeg"
+						/>
+					</Card>
+					<Card className="col-span-12 sm:col-span-4 h-[300px]">
+						<CardHeader className="absolute z-10 top-1 flex-col !items-start">
+							<p className="text-tiny text-white/60 uppercase font-bold">
+								Supercharged
+							</p>
+							<h4 className="text-white font-medium text-large">
+								Creates beauty like a beast
+							</h4>
+						</CardHeader>
+						<Image
+							removeWrapper
+							alt="Card background"
+							className="z-0 w-full h-full object-cover"
+							src="/images/card-example-2.jpeg"
+						/>
+					</Card>
+					<Card
+						isFooterBlurred
+						className="w-full h-[300px] col-span-12 sm:col-span-5"
+					>
+						<CardHeader className="absolute z-10 top-1 flex-col items-start">
+							<p className="text-tiny text-white/60 uppercase font-bold">New</p>
+							<h4 className="text-black font-medium text-2xl">Acme camera</h4>
+						</CardHeader>
+						<Image
+							removeWrapper
+							alt="Card example background"
+							className="z-0 w-full h-full scale-125 -translate-y-6 object-cover"
+							src="/images/card-example-6.jpeg"
+						/>
+						<CardFooter className="absolute bg-white/30 bottom-0 border-t-1 border-zinc-100/50 z-10 justify-between">
+							<div>
+								<p className="text-black text-tiny">Available soon.</p>
+								<p className="text-black text-tiny">Get notified.</p>
+							</div>
+							<Button
+								className="text-tiny"
+								color="primary"
+								radius="full"
+								size="sm"
+							>
+								Notify Me
+							</Button>
+						</CardFooter>
+					</Card>
+					<Card
+						isFooterBlurred
+						className="w-full h-[300px] col-span-12 sm:col-span-7"
+					>
+						<CardHeader className="absolute z-10 top-1 flex-col items-start">
+							<p className="text-tiny text-white/60 uppercase font-bold">
+								Your day your way
+							</p>
+							<h4 className="text-white/90 font-medium text-xl">
+								Your checklist for better sleep
+							</h4>
+						</CardHeader>
+						<Image
+							removeWrapper
+							alt="Relaxing app background"
+							className="z-0 w-full h-full object-cover"
+							src="/images/card-example-5.jpeg"
+						/>
+						<CardFooter className="absolute bg-black/40 bottom-0 z-10 border-t-1 border-default-600 dark:border-default-100">
+							<div className="flex flex-grow gap-2 items-center">
+								<Image
+									alt="Breathing app icon"
+									className="rounded-full w-10 h-11 bg-black"
+									src="/images/breathing-app-icon.jpeg"
+								/>
+								<div className="flex flex-col">
+									<p className="text-tiny text-white/60">Breathing App</p>
+									<p className="text-tiny text-white/60">
+										Get a good night's sleep.
+									</p>
+								</div>
+							</div>
+							<Button radius="full" size="sm">
+								Get App
+							</Button>
+						</CardFooter>
+					</Card>
+				</div>
 			</div>
 
-			<div className="flex gap-3">
-				<Link
-					isExternal
-					as={NextLink}
-					href={siteConfig.links.docs}
-					className={buttonStyles({ color: "primary", radius: "full", variant: "shadow" })}
-				>
-					Documentation
-				</Link>
-				<Link
-					isExternal
-					as={NextLink}
-					className={buttonStyles({ variant: "bordered", radius: "full" })}
-					href={siteConfig.links.github}
-				>
-					<GithubIcon size={20} />
-					GitHub
-				</Link>
+				<Divider orientation="vertical" className="h-full place-self-center " />
+			<div className="col-span-4">
+			  <Card className="max-w-[400px]">
+      <CardHeader className="flex gap-3">
+        <Image
+          alt="nextui logo"
+          height={40}
+          radius="sm"
+          src="https://avatars.githubusercontent.com/u/86160567?s=200&v=4"
+          width={40}
+        />
+        <div className="flex flex-col">
+          <p className="text-md">NextUI</p>
+          <p className="text-small text-default-500">nextui.org</p>
+        </div>
+      </CardHeader>
+      <Divider/>
+      <CardBody>
+        <p>Make beautiful websites regardless of your design experience.</p>
+      </CardBody>
+      <Divider/>
+      <CardFooter>
+        <Link
+          isExternal
+          showAnchorIcon
+          href="https://github.com/nextui-org/nextui"
+        >
+          Visit source code on GitHub.
+        </Link>
+      </CardFooter>
+    </Card>
 			</div>
-
-			<div className="mt-8">
-				<Snippet hideSymbol hideCopyButton variant="flat">
-					<span>
-						Get started by editing <Code color="primary">app/page.tsx</Code>
-					</span>
-				</Snippet>
-			</div>
-		</section>
+		</div>
 	);
 }
