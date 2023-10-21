@@ -50,20 +50,16 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Popover, PopoverTrigger, PopoverContent } from "@nextui-org/popover";
 import signIn from "@/firebase/auth/signin";
+import logout from "@/firebase/auth/logout";
 import { useRouter } from "next/navigation";
-//  function handleDropdown(key:any) {
-
-// 		console.log(key)
-
-// 		return(
-
-// 		)
-// };
+import LoginModal from "./loginModal";
+import SignUpModal from "./signUpModal";
 export const Navbar = () => {
 	const router = useRouter();
 	const [email, setEmail] = React.useState("");
 	const [password, setPassword] = React.useState("");
 	const [pop, setPop] = React.useState(false);
+	const [isModalOpen, setModalOpen] = useState(false);
 	const login = async () => {
 		const { result, error } = await signIn(email, password);
 
@@ -74,6 +70,17 @@ export const Navbar = () => {
 		// else successful
 		console.log(result);
 		return router.push("/about");
+	};
+	const signout = async () => {
+		const { result, error } = await logout();
+
+		if (error) {
+			return console.log(error);
+		}
+
+		// else successful
+		console.log(result);
+		return router.push("/");
 	};
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
 	const [selectedKeys, setSelectedKeys] = React.useState<React.Key | null>(
@@ -98,6 +105,10 @@ export const Navbar = () => {
 			href: "/events",
 		},
 	];
+	console.log(pathname);
+	const closeModal = () => {
+		setModalOpen(false);
+	};
 	if (pathname == "/") {
 		rightButton = (
 			<Dropdown>
@@ -115,7 +126,7 @@ export const Navbar = () => {
 				<DropdownMenu
 					aria-label="Login Dropdown"
 					onAction={(key: React.Key) => {
-						onOpen();
+						setModalOpen(true);
 						setSelectedKeys(key);
 					}}
 				>
@@ -146,7 +157,7 @@ export const Navbar = () => {
 				href: "/",
 			},
 		];
-	} else if (pathname == "/individualUser") {
+	} else if (pathname == "/about") {
 		navItems = [
 			{
 				label: "Home",
@@ -157,6 +168,20 @@ export const Navbar = () => {
 				href: "/events",
 			},
 		];
+		rightButton = (
+			<Button
+				isExternal
+				as={Link}
+				className="text-sm font-normal text-default-600 bg-default-100"
+				startContent={<LoginIcon className="text-danger" />}
+				variant="flat"
+				onPress={() => {
+					signout();
+				}}
+			>
+				Logout
+			</Button>
+		);
 	}
 
 	const searchInput = (
@@ -214,98 +239,13 @@ export const Navbar = () => {
 				<NavbarItem className="hidden md:flex">
 					{rightButton}
 
-					<Modal
-						isOpen={isOpen}
-						onOpenChange={onOpenChange}
-						placement="top-center"
-					>
-						{selectedKeys == "login" ? (
-							<ModalContent>
-								{(onClose) => (
-									<>
-										<ModalHeader className="flex flex-col gap-1">
-											Login
-										</ModalHeader>
-										<ModalBody>
-											<Input
-												autoFocus
-												endContent={
-													<MailIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
-												}
-												label="Email"
-												placeholder="Enter your email"
-												variant="bordered"
-												onValueChange={(value: string) => {
-													setEmail(value);
-												}}
-											/>
-											<Input
-												endContent={
-													<LockIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
-												}
-												label="Password"
-												placeholder="Enter your password"
-												type="password"
-												variant="bordered"
-												onValueChange={(value: string) => {
-													setPassword(value);
-												}}
-											/>
-											<div className="flex py-2 px-1 justify-between">
-												<Checkbox
-													classNames={{
-														label: "text-small",
-													}}
-												>
-													Remember me
-												</Checkbox>
-												<Link color="primary" href="#" size="sm">
-													Forgot password?
-												</Link>
-											</div>
-										</ModalBody>
-										<ModalFooter>
-											<Button color="danger" variant="flat" onPress={onClose}>
-												Close
-											</Button>
-											<Popover
-												isOpen={pop}
-												onOpenChange={(open) => setPop(open)}
-											>
-												<PopoverTrigger>
-													<Button
-														color="primary"
-														onPress={() => {
-															if (email.length > 8 && password.length >= 6) {
-																login();
-																onClose();
-															} else {
-																return setPop(true);
-															}
-														}}
-													>
-														Sign in
-													</Button>
-												</PopoverTrigger>
-												<PopoverContent>
-													<div className="px-1 py-2">
-														<div className="text-small font-bold">Error</div>
-														<div className="text-tiny">
-															Please fill in full details
-														</div>
-													</div>
-												</PopoverContent>
-											</Popover>
-										</ModalFooter>
-									</>
-								)}
-							</ModalContent>
-						) : selectedKeys == "signup" ? (
-							<h1>signup</h1>
-						) : (
-							<h1>register</h1>
-						)}
-					</Modal>
+					{selectedKeys == "login" ? (
+						<LoginModal isOpen={isModalOpen} onClose={closeModal} />
+					) : selectedKeys == "signup" ? (
+						<SignUpModal isOpen={isModalOpen} onClose={closeModal} />
+					) : (
+						<h1>register</h1>
+					)}
 				</NavbarItem>
 			</NavbarContent>
 

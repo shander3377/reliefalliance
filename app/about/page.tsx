@@ -9,7 +9,11 @@ export default function AboutPage() {
 	const { user } = useAuthContext();
 	const router = useRouter();
 	React.useEffect(() => {
-		if (user == null) router.push("/");
+		console.log(user);
+		if (user.email == null) {
+			console.log("should go");
+			router.push("/");
+		}
 	}, [user]);
 
 	return <h1>{user.email}</h1>;
