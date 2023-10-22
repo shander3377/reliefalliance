@@ -174,8 +174,8 @@ export default function Home() {
 						className="w-full h-[300px] col-span-12 sm:col-span-5"
 					>
 						<CardHeader className="absolute z-10 top-1 flex-col items-start">
-							<p className="text-tiny text-black/60 uppercase font-bold">User</p>
-							<h4 className="text-black font-medium text-2xl">User Login system</h4>
+							<p className="text-tiny text-black/60 uppercase font-bold">Latest war updates</p>
+							<h4 className="text-black font-medium text-2xl">Join us now</h4>
 						</CardHeader>
 						<Image
 							removeWrapper
@@ -185,8 +185,8 @@ export default function Home() {
 						/>
 						<CardFooter className="absolute bg-white/30 bottom-0 border-t-1 border-zinc-100/50 z-10 justify-between">
 							<div>
-								<p className="text-black text-tiny">Login Below</p>
-								<p className="text-black text-tiny">User Login</p>
+								<p className="text-black text-tiny">Login/Singup Below</p>
+								<p className="text-black text-tiny">Start providing aids to the needy from home!</p>
 							</div>
 							<Button
 								className="text-tiny"
