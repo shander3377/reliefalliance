@@ -246,7 +246,7 @@ export default function Home() {
           alt="nextui logo"
           height={40}
           radius="sm"
-          src="/image5.jpg"
+          src="/logo.jpg"
           width={40}
         />
         <div className="flex flex-col">
