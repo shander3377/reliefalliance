@@ -124,7 +124,7 @@ export default function Home() {
 					<Card className="col-span-12 sm:col-span-4 h-[300px]">
 						<CardHeader className="absolute z-10 top-1 flex-col !items-start">
 							<p className="text-tiny text-black/60 uppercase font-bold">
-								Live News
+								Live Articles
 							</p>
 							<h4 className="text-black font-medium text-large">
 								Surf through the live info
@@ -256,7 +256,7 @@ export default function Home() {
       </CardHeader>
       <Divider/>
       <CardBody>
-        <p>content</p>
+        <p>We ought to provide our users a user-friendly envoirment to surf through live updates on various crisis going on around the world.We auto connects different rescue agencies nearby in case of calamity like earthquake/civil war or even a mere fire, our main objective is to prioritise the life of peoples.This application cuts shorts the time needed for agencies to provide backup and also comes with local donation through which users can donate online with free home pickup from their homes with direct NGO donations and supply reaching to the needy.</p>
       </CardBody>
       <Divider/>
       <CardFooter>
