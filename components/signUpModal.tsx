@@ -215,7 +215,7 @@ const SignUpModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 									}
 								}}
 							>
-								Sign in
+								Sign Up
 							</Button>
 						</PopoverTrigger>
 						<PopoverContent>
