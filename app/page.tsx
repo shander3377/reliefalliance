@@ -203,10 +203,10 @@ export default function Home() {
 						className="w-full h-[300px] col-span-12 sm:col-span-7"
 					>
 						<CardHeader className="absolute z-10 top-1 flex-col items-start">
-							<p className="text-tiny text-red-600 uppercase font-bold">
+							<p className="text-tiny text-green-600 uppercase font-bold">
 								Agency
 							</p>
-							<h4 className="text-red-600 font-medium text-xl">
+							<h4 className="text-green-600 font-medium text-xl">
 								Agency Registration
 							</h4>
 						</CardHeader>
@@ -224,8 +224,8 @@ export default function Home() {
 									src="/image5.jpg"
 								/>
 								<div className="flex flex-col">
-									<p className="text-tiny text-black/60">Agency Registration</p>
-									<p className="text-tiny text-white/60">
+									<p className="text-tiny text-blue-600">Agency Registration</p>
+									<p className="text-tiny text-blue-600">
 										Registration Portal for agency Registration
 									</p>
 								</div>
