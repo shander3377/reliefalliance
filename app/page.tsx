@@ -140,10 +140,10 @@ export default function Home() {
 					<Card className="col-span-12 sm:col-span-4 h-[300px]">
 						<CardHeader className="absolute z-10 top-1 flex-col !items-start">
 							<p className="text-tiny text-black/60 uppercase font-bold">
-								Death Toll
+								Local Donation
 							</p>
 							<h4 className="text-black font-medium text-large">
-								Live death toll
+								Donate to NGO's online/free pickup of goods
 							</h4>
 						</CardHeader>
 						<Image
@@ -155,10 +155,10 @@ export default function Home() {
 					</Card>
 					<Card className="col-span-12 sm:col-span-4 h-[300px]">
 						<CardHeader className="absolute z-10 top-1 flex-col !items-start">
-							<p className="text-tiny text-black/60 uppercase font-bold">
+							<p className="text-tiny text-green-600 uppercase font-bold">
 								Around the world
 							</p>
-							<h4 className="text-black font-medium text-large">
+							<h4 className="text-green-600 font-medium text-large">
 								Infos from around the world
 							</h4>
 						</CardHeader>
