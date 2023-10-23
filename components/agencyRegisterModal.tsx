@@ -69,6 +69,8 @@ const AgencyRegisterModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 	const router = useRouter();
 
 	const register = async () => {
+const code=		Math.floor(Math.pow(10, length-1) + Math.random() * (Math.pow(10, length) - Math.pow(10, length-1) - 1));
+
 		console.log("function run hoja");
 		console.log(isRegistered);
 		if (!isRegistered) {

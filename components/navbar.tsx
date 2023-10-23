@@ -212,10 +212,15 @@ export const Navbar = () => {
 			</Button>
 		);
 		var obv = {
-			label: "Dashboard",
+			label: "User",
 			href: "/user",
 		};
+		var obj2 = {
+			label: "Agency",
+			href: "/agency",
+		};
 		navItems.push(obv);
+		navItems.push(obj2);
 	}
 	const searchInput = (
 		<Input

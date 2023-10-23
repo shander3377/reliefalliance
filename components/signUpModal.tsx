@@ -88,7 +88,7 @@ const SignUpModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 		// }
 		// console.log(result2);
 
-		return router.push("/about");
+		return router.push("/user");
 	};
 	// onOpen();
 
