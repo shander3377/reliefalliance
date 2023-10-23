@@ -50,8 +50,8 @@ export default function UserPage() {
 						<p>
 						 Live updates on the Israel Palestine conflict covering all aspects of the
 						 war.The war rose due to long history tensions shared between both two nations in past years
-						 find all the related details here<a href="https://en.wikipedia.org/wiki/History_of_the_Israeli%E2%80%93Palestinian_conflict">Israel-Palestine Conflict</a>
-						 Login now to donate and help the refugees situation become stable.
+						 find all the related details here<a href="https://en.wikipedia.org/wiki/History_of_the_Israeli%E2%80%93Palestinian_conflict">(Israel-Palestine Conflict)</a>
+						  Login now to donate and help the refugees situation become stable.
 						</p>
 						<Button
 							className=" text-white mt-1"
@@ -83,8 +83,8 @@ export default function UserPage() {
 						<p>
 						    This has a similar case like the Israel conflict but basically reverse in terms of 
 							starting of the war.This also has a huge background history of conflict between the two 
-							nations if you want to see them click here <a href="https://en.wikipedia.org/wiki/Russo-Ukrainian_War">Russian-Ukraine Conflict</a>
-							Join our website now for live info and news and if already joined donate to help the refugees.
+							nations if you want to see them click here <a href="https://en.wikipedia.org/wiki/Russo-Ukrainian_War">(Russian-Ukraine Conflict)</a>
+							 Join our website now for live info and news and if already joined donate to help the refugees.
 						</p>
 						<Button
 							className=" text-white mt-1"
