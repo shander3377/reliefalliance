@@ -28,7 +28,7 @@ export default function EventsPage() {
 					<CardHeader className="pb-2 pt-2 px-4 flex-col items-start">
 						<Image
 							className="object-cover rounded-xl"
-							src="/image2.jpg"
+							src="/image6.jpg"
 							width={380}
 						/>
 						<h4 className="font-bold text-large">
