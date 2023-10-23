@@ -53,7 +53,7 @@ const SignUpModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 	const [dob, setDob] = React.useState("");
 
 	const [password, setPassword] = React.useState("");
-	const [agency, setAgency] = React.useState("");
+	const [agency, setAgency] = React.useState("000000");
 
 	const [password2, setPassword2] = React.useState("");
 	const [isSelected, setIsSelected] = React.useState(false);
@@ -69,11 +69,11 @@ const SignUpModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 		}
 
 		// else successful
-		console.log(result);
+		console.log(isSelected);
 		if (!isSelected) {
-			console.log(agency);
+			console.log("agency is ", agency);
 			setAgency("000000");
-			console.log(agency);
+			console.log("agency is", agency);
 		}
 		const data = {
 			name: name,

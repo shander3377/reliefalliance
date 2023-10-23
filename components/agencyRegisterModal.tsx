@@ -69,8 +69,11 @@ const AgencyRegisterModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 	const router = useRouter();
 
 	const register = async () => {
-const code=		Math.floor(Math.pow(10, length-1) + Math.random() * (Math.pow(10, length) - Math.pow(10, length-1) - 1));
-
+		const code = Math.floor(
+			Math.pow(10, 6 - 1) +
+				Math.random() * (Math.pow(10, 6) - Math.pow(10, 6 - 1) - 1)
+		);
+		console.log(code);
 		console.log("function run hoja");
 		console.log(isRegistered);
 		if (!isRegistered) {
@@ -81,6 +84,7 @@ const code=		Math.floor(Math.pow(10, length-1) + Math.random() * (Math.pow(10, l
 				agencyEmail: agencyEmail,
 				agencyLocation: agencyLocation,
 				agencyHeadName: agencyHeadName,
+				agencyCode: code,
 			};
 			await addData("agencies", data);
 			setIsRegistered(true);
@@ -88,7 +92,7 @@ const code=		Math.floor(Math.pow(10, length-1) + Math.random() * (Math.pow(10, l
 			//   return console.log(error2)
 			// }
 			// console.log(result2);
-
+			alert("Your agency code is " + code);
 			return router.push("/about");
 		}
 	};
