@@ -103,6 +103,8 @@
 // 			</section>
 // 	);
 // }
+"use client";
+import { useAuthContext } from "@/context/AuthContext";
 
 import NextLink from "next/link";
 import { Link } from "@nextui-org/link";
@@ -116,7 +118,19 @@ import { Button } from "@nextui-org/button";
 import { Image } from "@nextui-org/image";
 import { Card, CardHeader, CardBody, CardFooter } from "@nextui-org/card";
 import { Divider } from "@nextui-org/divider";
+import { useRouter } from "next/navigation";
+import React from "react";
 export default function Home() {
+	const { user } = useAuthContext();
+	const router = useRouter();
+	React.useEffect(() => {
+		console.log(user);
+		if (user.email !== null) {
+			console.log("should go");
+			router.push("/user");
+		}
+	}, [user]);
+
 	return (
 		<div className="grid grid-cols-12 grid-rows-1 ">
 			<div className="col-span-7">
@@ -174,8 +188,12 @@ export default function Home() {
 						className="w-full h-[300px] col-span-12 sm:col-span-5"
 					>
 						<CardHeader className="absolute z-10 top-1 flex-col items-start">
-							<p className="text-tiny text-blue-600 uppercase font-bold">Latest war updates</p>
-							<h4 className="text-blue-600 font-medium text-2xl">Join us now</h4>
+							<p className="text-tiny text-blue-600 uppercase font-bold">
+								Latest war updates
+							</p>
+							<h4 className="text-blue-600 font-medium text-2xl">
+								Join us now
+							</h4>
 						</CardHeader>
 						<Image
 							removeWrapper
@@ -186,7 +204,9 @@ export default function Home() {
 						<CardFooter className="absolute bg-white/30 bottom-0 border-t-1 border-zinc-100/50 z-10 justify-between">
 							<div>
 								<p className="text-black text-tiny">Login/Singup Below</p>
-								<p className="text-black text-tiny">Start providing aids to the needy from home!</p>
+								<p className="text-black text-tiny">
+									Start providing aids to the needy from home!
+								</p>
 							</div>
 							<Button
 								className="text-tiny"
@@ -238,37 +258,43 @@ export default function Home() {
 				</div>
 			</div>
 
-				<Divider orientation="vertical" className="h-full place-self-center " />
+			<Divider orientation="vertical" className="h-full place-self-center " />
 			<div className="col-span-4">
-			  <Card className="max-w-[400px]">
-      <CardHeader className="flex gap-3">
-        <Image
-          alt="nextui logo"
-          height={40}
-          radius="sm"
-          src="/logo.jpg"
-          width={40}
-        />
-        <div className="flex flex-col">
-          <p className="text-md">Disaster</p>
-          <p className="text-small text-default-500">Our Aim</p>
-        </div>
-      </CardHeader>
-      <Divider/>
-      <CardBody>
-        <p>We ought to provide our users a user-friendly envoirment to surf through live updates on various crisis going on around the world.We auto connects different rescue agencies nearby in case of calamity like earthquake/civil war or even a mere fire, our main objective is to prioritise the life of peoples.This application cuts shorts the time needed for agencies to provide backup and also comes with local donation through which users can donate online with free home pickup from their homes with direct NGO donations and supply reaching to the needy.</p>
-      </CardBody>
-      <Divider/>
-      <CardFooter>
-        <Link
-          isExternal
-          showAnchorIcon
-          href="login page link here"
-        >
-          Login Now
-        </Link>
-      </CardFooter>
-    </Card>
+				<Card className="max-w-[400px]">
+					<CardHeader className="flex gap-3">
+						<Image
+							alt="nextui logo"
+							height={40}
+							radius="sm"
+							src="/logo.jpg"
+							width={40}
+						/>
+						<div className="flex flex-col">
+							<p className="text-md">Disaster</p>
+							<p className="text-small text-default-500">Our Aim</p>
+						</div>
+					</CardHeader>
+					<Divider />
+					<CardBody>
+						<p>
+							We ought to provide our users a user-friendly envoirment to surf
+							through live updates on various crisis going on around the
+							world.We auto connects different rescue agencies nearby in case of
+							calamity like earthquake/civil war or even a mere fire, our main
+							objective is to prioritise the life of peoples.This application
+							cuts shorts the time needed for agencies to provide backup and
+							also comes with local donation through which users can donate
+							online with free home pickup from their homes with direct NGO
+							donations and supply reaching to the needy.
+						</p>
+					</CardBody>
+					<Divider />
+					<CardFooter>
+						<Link isExternal showAnchorIcon href="login page link here">
+							Login Now
+						</Link>
+					</CardFooter>
+				</Card>
 			</div>
 		</div>
 	);

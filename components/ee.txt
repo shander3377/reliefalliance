@@ -24,7 +24,13 @@ import NextLink from "next/link";
 import clsx from "clsx";
 import React from "react";
 import { ThemeSwitch } from "@/components/theme-switch";
-import { NameIcon, DOBIcon, MailIcon, LockIcon } from "@/components/icons";
+import {
+	NameIcon,
+	DOBIcon,
+	MailIcon,
+	LockIcon,
+	LocationIcon,
+} from "@/components/icons";
 import {
 	Modal,
 	ModalContent,
@@ -47,48 +53,42 @@ interface ModalProps {
 	onClose: () => void;
 }
 import { Checkbox } from "@nextui-org/checkbox";
-const SignUpModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
+const AgencyRegisterModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 	const [email, setEmail] = React.useState("");
-	const [name, setName] = React.useState("");
+	const [agencyName, setAgencyName] = React.useState("");
 	const [dob, setDob] = React.useState("");
+	const [agencyHeadName, setAgencyHeadName] = React.useState("");
 
-	const [password, setPassword] = React.useState("");
-	const [agency, setAgency] = React.useState("");
+	const [agencyLocation, setAgencyLocation] = React.useState("");
+	const [agencyEmail, setAgencyEmail] = React.useState("");
 
-	const [password2, setPassword2] = React.useState("");
-	const [isSelected, setIsSelected] = React.useState(false);
+	const [headEmail, setHeadEmail] = React.useState("");
+	const [isRegistered, setIsRegistered] = React.useState(false);
 
 	const [pop, setPop] = React.useState(false);
 	const router = useRouter();
 
-	const SignUp = async () => {
-		const { result, error } = await signUp(email, password);
+	const register = async () => {
+		console.log("function run hoja");
+		console.log(isRegistered);
+		if (!isRegistered) {
+			console.log("meow");
+			const data = {
+				agencyName: agencyName,
+				headEmail: headEmail,
+				agencyEmail: agencyEmail,
+				agencyLocation: agencyLocation,
+				agencyHeadName: agencyHeadName,
+			};
+			await addData("agencies", data);
+			setIsRegistered(true);
+			// if (error2) {
+			//   return console.log(error2)
+			// }
+			// console.log(result2);
 
-		if (error) {
-			return console.log(error);
+			return router.push("/about");
 		}
-
-		// else successful
-		console.log(result);
-		if (!isSelected) {
-			console.log(agency);
-			setAgency("000000");
-			console.log(agency);
-		}
-		const data = {
-			name: name,
-			dob: dob,
-			email: email,
-			agency: agency,
-		};
-		await addData("users", data);
-
-		// if (error2) {
-		//   return console.log(error2)
-		// }
-		// console.log(result2);
-
-		return router.push("/about");
 	};
 	// onOpen();
 
@@ -102,23 +102,35 @@ const SignUpModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 						endContent={
 							<NameIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
 						}
-						label="Name"
-						placeholder="Enter your name"
+						label="Agency Name"
+						placeholder="Enter agency name"
 						variant="bordered"
 						onValueChange={(value: string) => {
-							setName(value);
+							setAgencyName(value);
 						}}
 					/>
 					<Input
+						autoFocus
 						endContent={
-							<DOBIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+							<LocationIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
 						}
-						label="DOB"
-						placeholder="Enter your date of birth"
-						type="password"
+						label="Agency Location"
+						placeholder="Enter agency operating location"
 						variant="bordered"
 						onValueChange={(value: string) => {
-							setDob(value);
+							setAgencyLocation(value);
+						}}
+					/>
+					<Input
+						autoFocus
+						endContent={
+							<NameIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+						}
+						label="Head Name"
+						placeholder="Enter the name of Agency Head"
+						variant="bordered"
+						onValueChange={(value: string) => {
+							setAgencyHeadName(value);
 						}}
 					/>
 					<Input
@@ -126,61 +138,29 @@ const SignUpModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 						endContent={
 							<MailIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
 						}
-						label="Email"
-						placeholder="Enter your email"
+						label="Head Email"
+						placeholder="Enter agency head email"
 						variant="bordered"
 						onValueChange={(value: string) => {
-							setEmail(value);
+							setHeadEmail(value);
 						}}
 					/>
 					<Input
+						autoFocus
 						endContent={
-							<LockIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+							<MailIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
 						}
-						label="Password"
-						placeholder="Enter your password"
-						type="password"
+						label="Agency Email"
+						placeholder="Enter agency's contact email"
 						variant="bordered"
 						onValueChange={(value: string) => {
-							setPassword(value);
+							setAgencyEmail(value);
 						}}
 					/>
-					<Input
-						endContent={
-							<LockIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
-						}
-						label="Password again"
-						placeholder="Enter your password again"
-						type="password"
-						variant="bordered"
-						onValueChange={(value: string) => {
-							setPassword2(value);
-						}}
-					/>
-					<Checkbox
-						classNames={{
-							label: "text-small",
-						}}
-						isSelected={isSelected}
-						onValueChange={setIsSelected}
-					>
-						Part of an agency
-					</Checkbox>
-					{isSelected ? (
-						<Input
-							autoFocus
-							endContent={
-								<MailIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
-							}
-							label="Agency Code"
-							placeholder="Enter your 6 digit agency code"
-							variant="bordered"
-							onValueChange={(value: string) => {
-								setAgency(value);
-							}}
-							description="It is given by the agency leader"
-						/>
-					) : null}
+
+					<Button color="primary" variant="flat" onPress={onClose}>
+						Upload Proof
+					</Button>
 				</ModalBody>
 				<ModalFooter>
 					<Button color="danger" variant="flat" onPress={onClose}>
@@ -192,19 +172,20 @@ const SignUpModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 								color="primary"
 								onPress={() => {
 									if (
-										email.length > 8 &&
-										password == password2 &&
-										password.length >= 6 &&
-										dob
+										agencyEmail.length > 8 &&
+										agencyHeadName.length > 2 &&
+										agencyLocation.length > 6 &&
+										headEmail.length > 8
 									) {
-										SignUp();
+										console.log("sabh valid hai");
+										register();
 										onClose();
 									} else {
 										return setPop(true);
 									}
 								}}
 							>
-								Sign Up
+								Register
 							</Button>
 						</PopoverTrigger>
 						<PopoverContent>
@@ -219,4 +200,4 @@ const SignUpModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 		</Modal>
 	);
 };
-export default SignUpModal;
+export default AgencyRegisterModal;

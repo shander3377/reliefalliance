@@ -23,6 +23,7 @@ import { siteConfig } from "@/config/site";
 import NextLink from "next/link";
 import clsx from "clsx";
 import React from "react";
+import AgencyRegisterModal from "./agencyRegisterModal";
 import { ThemeSwitch } from "@/components/theme-switch";
 import {
 	TwitterIcon,
@@ -54,6 +55,8 @@ import logout from "@/firebase/auth/logout";
 import { useRouter } from "next/navigation";
 import LoginModal from "./loginModal";
 import SignUpModal from "./signUpModal";
+import { useAuthContext } from "@/context/AuthContext";
+
 export const Navbar = () => {
 	const router = useRouter();
 	const [email, setEmail] = React.useState("");
@@ -93,9 +96,11 @@ export const Navbar = () => {
 	const iconClasses =
 		"text-xl text-default-500 pointer-events-none flex-shrink-0";
 	const pathname = usePathname();
-	var rightButton;
 
-	var navItems = [
+	var navItems: {
+		label: string;
+		href: string;
+	}[] = [
 		{
 			label: "Home",
 			href: "/",
@@ -109,7 +114,47 @@ export const Navbar = () => {
 	const closeModal = () => {
 		setModalOpen(false);
 	};
+	const [loggedIn, setLoggedIn] = React.useState(false);
+	const { user } = useAuthContext();
+	React.useEffect(() => {
+		console.log("hi" + user);
+		if (user.email !== null) {
+			setLoggedIn(true);
+		} else {
+			setLoggedIn(false);
+		}
+	}, [user]);
+	console.log(loggedIn);
+	var rightButton;
+
 	if (pathname == "/") {
+		navItems = [
+			{
+				label: "Home",
+				href: "/",
+			},
+			{
+				label: "Events Around The World",
+				href: "/events",
+			},
+		];
+	} else if (pathname == "/user") {
+		navItems = [
+			{
+				label: "Home",
+				href: "/",
+			},
+			{
+				label: "Events Around The World",
+				href: "/events",
+			},
+			{
+				label: "Local Donation",
+				href: "/donate",
+			},
+		];
+	}
+	if (!loggedIn) {
 		rightButton = (
 			<Dropdown>
 				<DropdownTrigger>
@@ -151,23 +196,7 @@ export const Navbar = () => {
 				</DropdownMenu>
 			</Dropdown>
 		);
-		navItems = [
-			{
-				label: "Home",
-				href: "/",
-			},
-		];
-	} else if (pathname == "/about") {
-		navItems = [
-			{
-				label: "Home",
-				href: "/",
-			},
-			{
-				label: "Events Around The World",
-				href: "/events",
-			},
-		];
+	} else {
 		rightButton = (
 			<Button
 				isExternal
@@ -182,8 +211,12 @@ export const Navbar = () => {
 				Logout
 			</Button>
 		);
+		var obv = {
+			label: "Dashboard",
+			href: "/user",
+		};
+		navItems.push(obv);
 	}
-
 	const searchInput = (
 		<Input
 			aria-label="Search"
@@ -243,9 +276,9 @@ export const Navbar = () => {
 						<LoginModal isOpen={isModalOpen} onClose={closeModal} />
 					) : selectedKeys == "signup" ? (
 						<SignUpModal isOpen={isModalOpen} onClose={closeModal} />
-					) : (
-						<h1>register</h1>
-					)}
+					) : selectedKeys == "register" ? (
+						<AgencyRegisterModal isOpen={isModalOpen} onClose={closeModal} />
+					) : null}
 				</NavbarItem>
 			</NavbarContent>
 

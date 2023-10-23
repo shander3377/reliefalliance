@@ -5,7 +5,7 @@ import { useAuthContext } from "@/context/AuthContext";
 import React from "react";
 import { useRouter } from "next/navigation";
 
-export default function AboutPage() {
+export default function DonatePage() {
 	const { user } = useAuthContext();
 	const router = useRouter();
 	React.useEffect(() => {
@@ -16,5 +16,5 @@ export default function AboutPage() {
 		}
 	}, [user]);
 
-	return <h1>{user.email}</h1>;
+	return <h1>Under Progress</h1>;
 }
