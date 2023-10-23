@@ -40,7 +40,8 @@ export default function EventsPage() {
 						<p>
 						 Live updates on the Israel Palestine conflict covering all aspects of the
 						 war.The war rose due to long history tensions shared between both two nations in past years
-						 find all the related details here<a href="https://en.wikipedia.org/wiki/History_of_the_Israeli%E2%80%93Palestinian_conflict">(Israel-Palestine Conflict)</a>
+						 find all the related details here<Link href="https://en.wikipedia.org/wiki/History_of_the_Israeli%E2%80%93Palestinian_conflict">Israel-Palestine Conflict</Link>
+						  
 						  Login now to donate and help the refugees situation become stable.
 						</p>
 					</CardBody>
@@ -64,7 +65,7 @@ export default function EventsPage() {
 						<p>
 							This has a similar case like the Israel conflict but basically reverse in terms of 
 							starting of the war.This also has a huge background history of conflict between the two 
-							nations if you want to see them click here <a href="https://en.wikipedia.org/wiki/Russo-Ukrainian_War">(Russian-Ukraine Conflict)</a>
+							nations if you want to see them click here <Link href="https://en.wikipedia.org/wiki/Russo-Ukrainian_War">Russian-Ukraine Conflict</Link>
 							 Join our website now for live info and news and if already joined donate to help the refugees.
 						</p>
 					</CardBody>
