@@ -75,7 +75,7 @@ export default function UserPage() {
 						<Image
 							alt="Card background"
 							className="object-cover rounded-xl"
-							src="/image2.jpg"
+							src="/image7.jpg"
 							width={380}
 						/>
 						<h4 className="font-bold text-large">
@@ -115,7 +115,7 @@ export default function UserPage() {
 					<CardHeader className="pb-2 pt-2 px-4 flex-col items-start">
 						<Image
 							className="object-cover rounded-xl"
-							src="/image2.jpg"
+							src="/image8.jpg"
 							width={380}
 						/>
 						<h4 className="font-bold text-large">
