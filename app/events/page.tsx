@@ -17,16 +17,6 @@ import { useRouter } from "next/navigation";
 import React from "react";
 
 export default function EventsPage() {
-	const { user } = useAuthContext();
-	const router = useRouter();
-	React.useEffect(() => {
-		console.log(user);
-		if (user.email == null) {
-			console.log("should go");
-			router.push("/");
-		}
-	}, [user]);
-
 	return (
 		<div className="grid grid-cols-12 grid-rows-1 ">
 			<div className="col-span-4">

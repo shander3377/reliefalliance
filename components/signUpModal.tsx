@@ -186,34 +186,24 @@ const SignUpModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 					<Button color="danger" variant="flat" onPress={onClose}>
 						Close
 					</Button>
-					<Popover isOpen={pop} onOpenChange={(open) => setPop(open)}>
-						<PopoverTrigger>
-							<Button
-								color="primary"
-								onPress={() => {
-									if (
-										email.length > 8 &&
-										password == password2 &&
-										password.length >= 6 &&
-										dob
-									) {
-										SignUp();
-										onClose();
-									} else {
-										return setPop(true);
-									}
-								}}
-							>
-								Sign Up
-							</Button>
-						</PopoverTrigger>
-						<PopoverContent>
-							<div className="px-1 py-2">
-								<div className="text-small font-bold">Error</div>
-								<div className="text-tiny">Please fill in full details</div>
-							</div>
-						</PopoverContent>
-					</Popover>
+					<Button
+						color="primary"
+						onPress={() => {
+							if (
+								email.length > 8 &&
+								password == password2 &&
+								password.length >= 6 &&
+								dob
+							) {
+								SignUp();
+								onClose();
+							} else {
+								return alert("Please fill in all the details!");
+							}
+						}}
+					>
+						Sign Up
+					</Button>
 				</ModalFooter>
 			</ModalContent>
 		</Modal>
