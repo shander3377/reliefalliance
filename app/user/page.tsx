@@ -42,20 +42,16 @@ export default function UserPage() {
 							width={380}
 						/>
 						<h4 className="font-bold text-large">
-							Israel riprip palestine and hamas and usa uk support em hehe
+						Live updates on Israel Palestine conflict
 						</h4>
 					</CardHeader>
 					<Divider />
 					<CardBody className="overflow-visible py-4">
 						<p>
-							We ought to provide our users a user-friendly envoirment to surf
-							through live updates on various crisis going on around the
-							world.We auto connects different rescue agencies nearby in case of
-							calamity like earthquake/civil war or even a mere fire, our main
-							objective is to prioritise the life of peoples.This application
-							cuts shorts the time needed for agencies to provide backup and
-							also comes with local donation through which users can donate
-							online with free home pickup from th
+						 Live updates on the Israel Palestine conflict covering all aspects of the
+						 war.The war rose due to long history tensions shared between both two nations in past years
+						 find all the related details here<a href="https://en.wikipedia.org/wiki/History_of_the_Israeli%E2%80%93Palestinian_conflict">Israel-Palestine Conflict</a>
+						 Login now to donate and help the refugees situation become stable.
 						</p>
 						<Button
 							className=" text-white mt-1"
@@ -79,20 +75,16 @@ export default function UserPage() {
 							width={380}
 						/>
 						<h4 className="font-bold text-large">
-							Israel riprip palestine and hamas and usa uk support em hehe
+						Live updates on Ukraine Russia conflict
 						</h4>
 					</CardHeader>
 					<Divider />
 					<CardBody className="overflow-visible py-4">
 						<p>
-							We ought to provide our users a user-friendly envoirment to surf
-							through live updates on various crisis going on around the
-							world.We auto connects different rescue agencies nearby in case of
-							calamity like earthquake/civil war or even a mere fire, our main
-							objective is to prioritise the life of peoples.This application
-							cuts shorts the time needed for agencies to provide backup and
-							also comes with local donation through which users can donate
-							online with free home pickup from their{" "}
+						    This has a similar case like the Israel conflict but basically reverse in terms of 
+							starting of the war.This also has a huge background history of conflict between the two 
+							nations if you want to see them click here <a href="https://en.wikipedia.org/wiki/Russo-Ukrainian_War">Russian-Ukraine Conflict</a>
+							Join our website now for live info and news and if already joined donate to help the refugees.
 						</p>
 						<Button
 							className=" text-white mt-1"
@@ -119,20 +111,19 @@ export default function UserPage() {
 							width={380}
 						/>
 						<h4 className="font-bold text-large">
-							Israel riprip palestine and hamas and usa uk support em hehe
+							Major natural calamities all around the world
 						</h4>
 					</CardHeader>
 					<Divider />
 
 					<CardBody className="overflow-visible py-4">
 						<p>
-							We ought to provide our users a user-friendly envoirment to surf
-							through live updates on various crisis going on around the
-							world.We auto connects different rescue agencies nearby in case of
-							calamity like earthquake/civil war or even a mere fire, our main
-							objective is to prioritise the life of peoples.This application
-							cuts shorts the time needed for agencies to provide backup and
-							also comes with local donation through w
+						    Many natural calamities take place throughout the world on daily basis.
+							However some of them take place on a huge scale/in densely populated area which leads to huge
+							loss of life.Our main motive was to prevent this by shortening the time and co-ordinating gap 
+							between two different agencies to link and work together.Our main motive is to protect the
+							high valued life of civilians in any case of war/calamity and make their situation stable.
+							Donate here to make the fund reaching to non-profit operating NGO's which would help the needy.
 						</p>
 						<Button
 							className=" text-white mt-1"
