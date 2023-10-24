@@ -72,7 +72,7 @@ const LoginModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 
 		// else successful
 		console.log(result);
-		return router.push("/about");
+		return router.push("/user");
 	};
 	// onOpen();
 
@@ -122,19 +122,19 @@ const LoginModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 					<Button color="danger" variant="flat" onPress={onClose}>
 						Close
 					</Button>
-							<Button
-								color="primary"
-								onPress={() => {
-									if (email.length > 8 && password.length >= 6) {
-										login();
-										onClose();
-									} else {
-										return alert("Please fill in all the details!");
-									}
-								}}
-							>
-								Sign in
-							</Button>
+					<Button
+						color="primary"
+						onPress={() => {
+							if (email.length > 8 && password.length >= 6) {
+								login();
+								onClose();
+							} else {
+								return alert("Please fill in all the details!");
+							}
+						}}
+					>
+						Sign in
+					</Button>
 				</ModalFooter>
 			</ModalContent>
 		</Modal>

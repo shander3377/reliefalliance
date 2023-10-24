@@ -26,6 +26,8 @@ import {
 	where,
 	query,
 	onSnapshot,
+	updateDoc,
+	doc,
 } from "firebase/firestore";
 import {
 	Modal,
@@ -41,6 +43,7 @@ export default function AgencyPage() {
 		dob: string;
 		email: string;
 		agency: string;
+		head: boolean;
 	};
 	const { user } = useAuthContext();
 	const router = useRouter();
@@ -48,7 +51,9 @@ export default function AgencyPage() {
 	const [open2, setOpen2] = React.useState(false);
 
 	const [agency, setAgency] = React.useState<string>();
-	const [doc, setDoc] = React.useState<userDoc>();
+	const [docc, setDocc] = React.useState<userDoc>();
+	const [docId, setDocId] = React.useState<string>();
+
 	React.useEffect(() => {
 		console.log(user);
 		if (user.email == null) {
@@ -63,10 +68,59 @@ export default function AgencyPage() {
 	var q = query(collection(db, "users"), where("email", "==", user.email));
 	onSnapshot(q, (snapshot: any) => {
 		snapshot.forEach((docu: any) => {
-			setDoc(docu.data());
+			setDocc(docu.data());
+			setDocId(docu.id);
+			console.log("usr  doc id" + docId);
 		});
 	});
 	function joinAgency() {
+		console.log("function called");
+		console.log(agency);
+		try {
+			var q = query(
+				collection(db, "agencies"),
+				where("agencyCode", "==", agency)
+			);
+			console.log(q);
+			onSnapshot(q, (snapshot: any) => {
+				snapshot.forEach((docu: any) => {
+					console.log("agency doc id " + docu.id);
+					if (docu.id !== null) {
+						try {
+							const userDoc = doc(collection(db, "users"), docId);
+							updateDoc(userDoc, {
+								agency: agency,
+							});
+							var agencyDoc = doc(collection(db, "agencies"), docu.id);
+							if (docu.data().headEmail == docc?.email) {
+								updateDoc(userDoc, {
+									head: true,
+								});
+								var memembers = docu.data().members;
+								memembers.push({
+									name: docc?.name,
+									email: docc?.email,
+									head: true,
+								});
+								updateDoc(agencyDoc, {
+									members: memembers,
+								});
+							} else {
+								updateDoc(agencyDoc, {
+									members: [
+										{ name: docc?.name, email: docc?.email, head: false },
+									],
+								});
+							}
+						} catch (err) {
+							alert(err);
+						}
+					}
+				});
+			});
+		} catch (e) {
+			alert(e);
+		}
 		// 	var q = query(collection(db, "agencies"), where("email", "==", user.email));
 		// onSnapshot(q, (snapshot: any) => {
 		// 	snapshot.forEach((docu: any) => {
@@ -81,7 +135,7 @@ export default function AgencyPage() {
 	const closeModal2 = () => {
 		setOpen2(false);
 	};
-	if (doc?.agency == "000000") {
+	if (docc?.agency == "000000") {
 		return (
 			<section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
 				<div className=" inline-block inlinemax-w-lg text-center justify-center">
@@ -125,7 +179,9 @@ export default function AgencyPage() {
 
 					<Modal isOpen={open} placement="top-center" onClose={closeModal}>
 						<ModalContent>
-							<ModalHeader className="flex flex-col gap-1">Login</ModalHeader>
+							<ModalHeader className="flex flex-col gap-1">
+								Join Agency
+							</ModalHeader>
 							<ModalBody>
 								<Input
 									autoFocus

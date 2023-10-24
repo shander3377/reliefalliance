@@ -42,6 +42,17 @@ import signUp from "@/firebase/auth/signup";
 import addData from "@/firebase/firestore/addData";
 import logout from "@/firebase/auth/logout";
 import { useRouter } from "next/navigation";
+import {
+	getFirestore,
+	collection,
+	where,
+	query,
+	onSnapshot,
+	updateDoc,
+	doc,
+} from "firebase/firestore";
+import { db } from "../config/firebase.config";
+
 interface ModalProps {
 	isOpen: boolean;
 	onClose: () => void;
@@ -74,15 +85,58 @@ const SignUpModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 			console.log("agency is ", agency);
 			setAgency("000000");
 			console.log("agency is", agency);
+		} else {
+			var q = query(
+				collection(db, "agencies"),
+				where("agencyCode", "==", agency)
+			);
+			console.log(q);
+			onSnapshot(q, (snapshot: any) => {
+				snapshot.forEach((docu: any) => {
+					console.log("agency doc id " + docu.id);
+					if (docu.id == null) {
+						return alert(
+							"Agency doesn't exist, please create one or enter correct code"
+						);
+					}
+				});
+			});
 		}
 		const data = {
 			name: name,
 			dob: dob,
 			email: email,
 			agency: agency,
+			head: false,
 		};
 		await addData("users", data);
-
+		var q = query(
+			collection(db, "agencies"),
+			where("agencyCode", "==", agency)
+		);
+		console.log(q);
+		onSnapshot(q, (snapshot: any) => {
+			snapshot.forEach((docu: any) => {
+				var agencyDoc = doc(collection(db, "agencies"), docu.id);
+				var memembers = docu.data().members;
+				if (docu.data().headEmail == email) {
+					memembers.push({
+						name: name,
+						email: email,
+						head: false,
+					});
+				} else {
+					memembers.push({
+						name: name,
+						email: email,
+						head: true,
+					});
+				}
+				updateDoc(agencyDoc, {
+					members: memembers,
+				});
+			});
+		});
 		// if (error2) {
 		//   return console.log(error2)
 		// }

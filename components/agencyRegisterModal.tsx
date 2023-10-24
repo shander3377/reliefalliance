@@ -12,6 +12,8 @@ import { Button } from "@nextui-org/button";
 import { Kbd } from "@nextui-org/kbd";
 import { Link } from "@nextui-org/link";
 import { Input } from "@nextui-org/input";
+import { useAuthContext } from "@/context/AuthContext";
+
 import {
 	Dropdown,
 	DropdownTrigger,
@@ -46,14 +48,32 @@ import { Popover, PopoverTrigger, PopoverContent } from "@nextui-org/popover";
 import signIn from "@/firebase/auth/signin";
 import signUp from "@/firebase/auth/signup";
 import addData from "@/firebase/firestore/addData";
+import {
+	getFirestore,
+	collection,
+	where,
+	query,
+	onSnapshot,
+	updateDoc,
+	doc,
+} from "firebase/firestore";
 import logout from "@/firebase/auth/logout";
 import { useRouter } from "next/navigation";
 interface ModalProps {
 	isOpen: boolean;
 	onClose: () => void;
 }
+import { db } from "../config/firebase.config";
+
 import { Checkbox } from "@nextui-org/checkbox";
 const AgencyRegisterModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
+	type userDoc = {
+		name: string;
+		dob: string;
+		email: string;
+		agency: string;
+		head: boolean;
+	};
 	const [email, setEmail] = React.useState("");
 	const [agencyName, setAgencyName] = React.useState("");
 	const [dob, setDob] = React.useState("");
@@ -64,11 +84,21 @@ const AgencyRegisterModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 
 	const [headEmail, setHeadEmail] = React.useState("");
 	const [isRegistered, setIsRegistered] = React.useState(false);
-
+	const [docc, setDocc] = React.useState<userDoc>();
+	const [docId, setDocId] = React.useState();
 	const [pop, setPop] = React.useState(false);
 	const router = useRouter();
+	const { user } = useAuthContext();
 
+	const [loggedIn, setLoggedIn] = React.useState(false);
+	React.useEffect(() => {
+		console.log(user);
+		if (user.email !== null) {
+			setLoggedIn(true);
+		}
+	}, [user]);
 	const register = async () => {
+		var data;
 		const code = Math.floor(
 			Math.pow(10, 6 - 1) +
 				Math.random() * (Math.pow(10, 6) - Math.pow(10, 6 - 1) - 1)
@@ -77,23 +107,59 @@ const AgencyRegisterModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 		console.log("function run hoja");
 		console.log(isRegistered);
 		if (!isRegistered) {
-			console.log("meow");
-			const data = {
-				agencyName: agencyName,
-				headEmail: headEmail,
-				agencyEmail: agencyEmail,
-				agencyLocation: agencyLocation,
-				agencyHeadName: agencyHeadName,
-				agencyCode: code,
-			};
+			if (loggedIn) {
+				var q = query(
+					collection(db, "users"),
+					where("email", "==", user.email)
+				);
+				onSnapshot(q, (snapshot: any) => {
+					snapshot.forEach((docu: any) => {
+						setDocc(docu.data());
+						setDocId(docu.id);
+						console.log("usr  doc id" + docId);
+					});
+				});
+				if (docc?.email == headEmail) {
+					data = {
+						agencyName: agencyName,
+						headEmail: headEmail,
+						agencyEmail: agencyEmail,
+						agencyLocation: agencyLocation,
+						agencyHeadName: agencyHeadName,
+						agencyCode: code,
+						members: [{ name: docc?.name, email: docc?.email, head: true }],
+					};
+				} else {
+					data = {
+						agencyName: agencyName,
+						headEmail: headEmail,
+						agencyEmail: agencyEmail,
+						agencyLocation: agencyLocation,
+						agencyHeadName: agencyHeadName,
+						agencyCode: code,
+						members: [{ name: docc?.name, email: docc?.email, head: false }],
+					};
+				}
+			} else {
+				data = {
+					agencyName: agencyName,
+					headEmail: headEmail,
+					agencyEmail: agencyEmail,
+					agencyLocation: agencyLocation,
+					agencyHeadName: agencyHeadName,
+					agencyCode: code,
+					members: [],
+				};
+			}
 			await addData("agencies", data);
+
 			setIsRegistered(true);
 			// if (error2) {
 			//   return console.log(error2)
 			// }
 			// console.log(result2);
 			alert("Your agency code is " + code);
-			return router.push("/about");
+			return router.push("/agency");
 		}
 	};
 	// onOpen();
@@ -101,7 +167,9 @@ const AgencyRegisterModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 	return (
 		<Modal isOpen={isOpen} onClose={onClose} placement="top-center">
 			<ModalContent>
-				<ModalHeader className="flex flex-col gap-1">Login</ModalHeader>
+				<ModalHeader className="flex flex-col gap-1">
+					Register Agency
+				</ModalHeader>
 				<ModalBody>
 					<Input
 						autoFocus
