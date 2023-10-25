@@ -75,10 +75,19 @@ const Message: React.FC<meowmeowprops> = ({ message, isOwnMessage }) => {
 	}
 	return (
 		<li className={className}>
-			<Chip variant="flat" avatar={<Avatar name={displayName} size="sm" />}>
+			<Chip
+				variant="faded"
+				color="primary"
+				avatar={<Avatar name={displayName} size="sm" />}
+			>
 				{displayName}
 			</Chip>
-			<div className="items-start">{text}</div>
+			<br />
+			<div className="items-start">
+				<Chip className="items-start" color="secondary">
+					{text}
+				</Chip>
+			</div>
 		</li>
 	);
 };

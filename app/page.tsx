@@ -119,6 +119,9 @@ import { Image } from "@nextui-org/image";
 import { Card, CardHeader, CardBody, CardFooter } from "@nextui-org/card";
 import { Divider } from "@nextui-org/divider";
 import { useRouter } from "next/navigation";
+import SignUpModal from "../components/signUpModal";
+import AgencyRegisterModal from "../components/agencyRegisterModal";
+
 import React from "react";
 export default function Home() {
 	// const { user } = useAuthContext();
@@ -130,7 +133,10 @@ export default function Home() {
 	// 		router.push("/user");
 	// 	}
 	// }, [user]);
-
+	const [isModalOpen, setModalOpen] = React.useState(false);
+	const closeModal = () => {
+		setModalOpen(false);
+	};
 	return (
 		<div className="grid grid-cols-12 grid-rows-1 ">
 			<div className="col-span-7">
@@ -213,6 +219,7 @@ export default function Home() {
 								color="primary"
 								radius="full"
 								size="sm"
+								onClick=(<SignUpModal isOpen={isModalOpen} onClose={closeModal} />)
 							>
 								Login/Signup
 							</Button>

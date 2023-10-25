@@ -96,8 +96,7 @@ import { MessageList } from "./messageList";
 const Chat: React.FC<meowprops> = ({ userDoc }) => {
 	return (
 		<>
-			<div></div>
-			<div className="messages-container">
+			<div className="w-full">
 				<MessageList userr={userDoc} />
 				<MessageInput user={userDoc} />
 			</div>
