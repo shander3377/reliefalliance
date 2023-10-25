@@ -64,6 +64,7 @@ export default function DonatePage() {
               <ModalBody>
                 <Input
                   autoFocus
+				  
                  
                   label="Item"
                   placeholder="Item for donation"
@@ -78,7 +79,7 @@ export default function DonatePage() {
                 <div className="flex py-2 px-1 justify-between">
                
                   <Link color="primary" href="#" size="sm">
-                    About This Feature
+                    We don't take any share in the donation as being a non-profit organisation
                   </Link>
                 </div>
               </ModalBody>
