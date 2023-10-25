@@ -57,12 +57,11 @@ import { Table,
 import {Tabs, Tab} from "@nextui-org/tabs";
 
 const statusColorMap: Record<string, ChipProps["color"]>  = {
-	active: "success",
+	ongoing: "success",
 	paused: "danger",
 	vacation: "warning",
   };
   
-  type Userr = typeof users[0];
 export default function AgencyDashboardPage() {
 	type userDoc = {
 		name: string;
@@ -80,12 +79,28 @@ export default function AgencyDashboardPage() {
 	const [agency, setAgency] = React.useState<string>();
 	const [docc, setDocc] = React.useState<userDoc>();
 	const [docId, setDocId] = React.useState<string>();
+	const [allCrisis, setAllCrisis] = React.useState<any[]>()
+	async function getCrisis(){
+		const documentsRef = collection(db, 'crisis'); // Replace 'your_collection_name' with the name of your collection
+		const querySnapshot = await getDocs(documentsRef);
+		var news:any = []
+	  
+		querySnapshot.forEach((doc) => {
+			news.push(doc.data())
+
+		  
+	})
+	console.log(news)
+	setAllCrisis(news)
+}
+
 	async function createCrisis(){
 var data = {
 	title: title,
 	description: description,
 	location: location,
-	agencies: [docc?.agency]
+	agencies: [docc?.agency],
+	status: "ongoing"
 }
 var colref = collection(db, "crisis")
 var hehe = await addDoc(colref, data);
@@ -95,7 +110,6 @@ const userDoc = doc(collection(db, "users"), docId);
 						updateDoc(userDoc, {
 							crisis: true,
 							crisisId: id
-
 						});
 console.log(docc?.agency)
 var q = query(collection(db, "agencies"), where("agencyCode", "==", docc?.agency));
@@ -140,29 +154,37 @@ setDisabledKey("")
 			getData()
 		}
 	}, [user]);
-	const renderCell = React.useCallback((userr: Userr, columnKey: React.Key) => {
-		const cellValue = userr[columnKey as keyof Userr];
-	
+	type Crisis = {
+		location: string,
+		title: string,
+		description: string,
+		agencies: Array<string>
+	}
+	getCrisis()
+
+	const renderCell = React.useCallback((crisis: Crisis, columnKey: React.Key) => {
+
+		const cellValue = crisis[columnKey as keyof Crisis];
+	console.log(cellValue)
 		switch (columnKey) {
-		  case "name":
-			return (
-			  <h1>
-				
-			  
-				{user.email}
-			  </h1>
-			);
-		  case "role":
+		  case "title":
+			<p>sdsds</p>
+		  case "location":
 			return (
 			  <div className="flex flex-col">
-				<p className="text-bold text-sm capitalize">{cellValue}</p>
-				<p className="text-bold text-sm capitalize text-default-400">{user.team}</p>
-			  </div>
+				<p className="text-bold text-sm capitalize text-default-400">sdsds</p>
+		 	  </div>
 			);
+			case "description":
+				return (
+				  <div className="flex flex-col">
+					<p className="text-bold text-sm capitalize text-default-400">asdasd</p>
+				  </div>
+				);
 		  case "status":
 			return (
 			  <Chip className="capitalize" color={statusColorMap[user.status]} size="sm" variant="flat">
-				{cellValue}
+				hehe
 			  </Chip>
 			);
 		  case "actions":
@@ -194,7 +216,7 @@ setDisabledKey("")
 		<div className=" inline-block inlinemax-w-lg text-center justify-center">
 		<Tabs key="windows" variant="bordered" aria-label="Tabs variants" color="primary" disabledKeys={[disabledKey]}>
 		<Tab title="All Crises" key="all">
-		<Table aria-label="Example table with custom cells">
+		 <Table aria-label="Example table with custom cells">
       <TableHeader columns={columns}>
         {(column) => (
           <TableColumn key={column.uid} align={column.uid === "actions" ? "center" : "start"}>
@@ -202,14 +224,14 @@ setDisabledKey("")
           </TableColumn>
         )}
       </TableHeader>
-      <TableBody items={users}>
+      <TableBody items={allCrisis}>
         {(item) => (
-          <TableRow key={item.id}>
+          <TableRow key={item.title}>
             {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
           </TableRow>
         )}
       </TableBody>
-    </Table>
+    </Table> 
 		</Tab>
 		<Tab title="Neighboring Crises" key="near"/>
 		<Tab title="Create Cisis" key="create">
