@@ -219,7 +219,6 @@ export default function Home() {
 								color="primary"
 								radius="full"
 								size="sm"
-								onClick=(<SignUpModal isOpen={isModalOpen} onClose={closeModal} />)
 							>
 								Login/Signup
 							</Button>
