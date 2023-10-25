@@ -10,6 +10,7 @@ import {
 	NavbarMenuItem,
 } from "@nextui-org/navbar";
 import { Button } from "@nextui-org/button";
+import {Tooltip} from "@nextui-org/tooltip";
 import { Kbd } from "@nextui-org/kbd";
 import { Link } from "@nextui-org/link";
 import { Input } from "@nextui-org/input";
@@ -51,7 +52,9 @@ export default function DonatePage() {
 	const {isOpen, onOpen, onOpenChange} = useDisclosure();
 	return (
     <>
-      <Button onPress={onOpen} color="primary">Donate Now</Button>
+     
+     <Tooltip showArrow={true} content="Click here to donate any item. *we don't take any share in the donation given as we are operating as a non-profit organisation"><Button onPress={onOpen} color="primary">Donate Now</Button></Tooltip>
+      
       <Modal 
         isOpen={isOpen} 
         onOpenChange={onOpenChange}
@@ -103,5 +106,8 @@ export default function DonatePage() {
         </ModalContent>
       </Modal>
     </>
+    
   );
+  
 				}
+
