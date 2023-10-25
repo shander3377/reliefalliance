@@ -137,10 +137,10 @@ export default function Home() {
 				<div className="gap-2 grid grid-cols-12 grid-rows-2 ">
 					<Card className="col-span-12 sm:col-span-4 h-[300px]">
 						<CardHeader className="absolute z-10 top-1 flex-col !items-start">
-							<p className="text-tiny text-black/100 uppercase font-bold">
+							<p className="text-tiny text-red-600 uppercase font-bold">
 								Live Articles
 							</p>
-							<h4 className="text-black/100 font-medium text-large">
+							<h4 className="text-red-600 font-medium text-large">
 								Surf through the live info
 							</h4>
 						</CardHeader>
@@ -156,7 +156,7 @@ export default function Home() {
 							<p className="text-tiny text-black/60 uppercase font-bold">
 								Local Donation
 							</p>
-							<h4 className="text-black font-medium text-large">
+							<h4 className="text-black font-medium text-medium">
 								Donate to NGO's online/free pickup of goods
 							</h4>
 						</CardHeader>
