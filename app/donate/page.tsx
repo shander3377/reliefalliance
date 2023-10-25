@@ -64,17 +64,13 @@ export default function DonatePage() {
               <ModalBody>
                 <Input
                   autoFocus
-                  endContent={
-                    <MailIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
-                  }
+                 
                   label="Item"
                   placeholder="Item for donation"
                   variant="bordered"
                 />
                 <Input
-                  endContent={
-                    <LockIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
-                  }
+                  
                   label="Location"
                   placeholder="Adress"
                   variant="bordered"
