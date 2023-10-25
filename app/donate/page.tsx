@@ -1,20 +1,109 @@
 "use client";
-import { title } from "@/components/primitives";
+"use client";
+import {
+	Navbar as NextUINavbar,
+	NavbarContent,
+	NavbarMenu,
+	NavbarMenuToggle,
+	NavbarBrand,
+	NavbarItem,
+	NavbarMenuItem,
+} from "@nextui-org/navbar";
 import { Button } from "@nextui-org/button";
-import { useAuthContext } from "@/context/AuthContext";
+import { Kbd } from "@nextui-org/kbd";
+import { Link } from "@nextui-org/link";
+import { Input } from "@nextui-org/input";
+import {
+	Dropdown,
+	DropdownTrigger,
+	DropdownMenu,
+	DropdownItem,
+} from "@nextui-org/dropdown";
+import { link as linkStyles } from "@nextui-org/theme";
+import { siteConfig } from "@/config/site";
+import NextLink from "next/link";
+import clsx from "clsx";
 import React from "react";
+import { ThemeSwitch } from "@/components/theme-switch";
+import { NameIcon, DOBIcon, MailIcon, LockIcon } from "@/components/icons";
+import {
+	Modal,
+	ModalContent,
+	ModalHeader,
+	ModalBody,
+	ModalFooter,
+	useDisclosure,
+} from "@nextui-org/modal";
+import { Logo } from "@/components/icons";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { Popover, PopoverTrigger, PopoverContent } from "@nextui-org/popover";
+import signIn from "@/firebase/auth/signin";
+import signUp from "@/firebase/auth/signup";
+import addData from "@/firebase/firestore/addData";
+import logout from "@/firebase/auth/logout";
 import { useRouter } from "next/navigation";
+import {Checkbox} from "@nextui-org/checkbox";
+const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
+// onOpen();
 export default function DonatePage() {
-	const { user } = useAuthContext();
-	const router = useRouter();
-	React.useEffect(() => {
-		console.log(user);
-		if (user.email == null) {
-			console.log("should go");
-			router.push("/");
-		}
-	}, [user]);
-
-	return <h1>Under Progress</h1>;
-}
+return (
+    <>
+      <Button onPress={onOpen} color="primary">Donate Now</Button>
+      <Modal 
+        isOpen={isOpen} 
+        onOpenChange={onOpenChange}
+        placement="top-center"
+      >
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">Log in</ModalHeader>
+              <ModalBody>
+                <Input
+                  autoFocus
+                  endContent={
+                    <MailIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+                  }
+                  label="Email"
+                  placeholder="Enter your email"
+                  variant="bordered"
+                />
+                <Input
+                  endContent={
+                    <LockIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+                  }
+                  label="Password"
+                  placeholder="Enter your password"
+                  type="password"
+                  variant="bordered"
+                />
+                <div className="flex py-2 px-1 justify-between">
+                  <Checkbox
+                    classNames={{
+                      label: "text-small",
+                    }}
+                  >
+                    Remember me
+                  </Checkbox>
+                  <Link color="primary" href="#" size="sm">
+                    Forgot password?
+                  </Link>
+                </div>
+              </ModalBody>
+              <ModalFooter>
+                <Button color="danger" variant="flat" onPress={onClose}>
+                  Close
+                </Button>
+                <Button color="primary" onPress={onClose}>
+                  Sign in
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+    </>
+  );
+				}
