@@ -25,7 +25,7 @@ import NextLink from "next/link";
 import clsx from "clsx";
 import React from "react";
 import { ThemeSwitch } from "@/components/theme-switch";
-import { NameIcon, DOBIcon, MailIcon, LockIcon } from "@/components/icons";
+import { NameIcon, DOBIcon, MailIcon, LockIcon, DonateIcon, LocationIcon } from "@/components/icons";
 import {
 	Modal,
 	ModalContent,
@@ -64,6 +64,9 @@ export default function DonatePage() {
               <ModalBody>
                 <Input
                   autoFocus
+                  endContent={
+                    <DonateIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+                  }
 				  
                  
                   label="Item"
@@ -71,6 +74,10 @@ export default function DonatePage() {
                   variant="bordered"
                 />
                 <Input
+                autoFocus
+                endContent={
+                  <LocationIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+                }
                   
                   label="Location"
                   placeholder="Adress"
