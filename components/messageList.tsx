@@ -68,10 +68,14 @@ interface meowmeowprops {
 const Message: React.FC<meowmeowprops> = ({ message, isOwnMessage }) => {
 	const { displayName, text } = message;
 	var className;
+	const { user } = useAuthContext();
+
+	console.log(isOwnMessage);
+	console.log(message.email, user.email);
 	if (isOwnMessage) {
-		className = "items-start";
+		className = "items-start mr-20";
 	} else {
-		className = "items-end";
+		className = "items-end ml-52";
 	}
 	return (
 		<li className={className}>

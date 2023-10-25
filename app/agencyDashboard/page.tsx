@@ -38,6 +38,7 @@ import {
 	getDocs,
 	setDoc,
 	addDoc,
+	arrayUnion,
 } from "firebase/firestore";
 import {
 	Modal,
@@ -179,6 +180,11 @@ export default function AgencyDashboardPage() {
 					crisis: true,
 					crisisId: id,
 				});
+			});
+
+			var q2 = doc(collection(db, "crisis"), id);
+			updateDoc(q2, {
+				agencies: arrayUnion(docc?.agency),
 			});
 		} else {
 			alert("Only available for agency heads");
