@@ -44,11 +44,12 @@ import addData from "@/firebase/firestore/addData";
 import logout from "@/firebase/auth/logout";
 import { useRouter } from "next/navigation";
 import {Checkbox} from "@nextui-org/checkbox";
-const {isOpen, onOpen, onOpenChange} = useDisclosure();
+
 
 // onOpen();
 export default function DonatePage() {
-return (
+	const {isOpen, onOpen, onOpenChange} = useDisclosure();
+	return (
     <>
       <Button onPress={onOpen} color="primary">Donate Now</Button>
       <Modal 
