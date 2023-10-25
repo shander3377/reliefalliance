@@ -56,6 +56,9 @@ import {
 	onSnapshot,
 	updateDoc,
 	doc,
+	limit,
+	Unsubscribe,
+	getDocs,
 } from "firebase/firestore";
 import logout from "@/firebase/auth/logout";
 import { useRouter } from "next/navigation";
@@ -66,6 +69,7 @@ interface ModalProps {
 import { db } from "../config/firebase.config";
 
 import { Checkbox } from "@nextui-org/checkbox";
+import { unsubscribe } from "diagnostics_channel";
 const AgencyRegisterModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 	type userDoc = {
 		name: string;
@@ -84,7 +88,7 @@ const AgencyRegisterModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 
 	const [headEmail, setHeadEmail] = React.useState("");
 	const [isRegistered, setIsRegistered] = React.useState(false);
-	const [docc, setDocc] = React.useState<userDoc>();
+	// const [docc, setDocc] = React.useState<userDoc>();
 	const [docId, setDocId] = React.useState();
 	const [pop, setPop] = React.useState(false);
 	const router = useRouter();
@@ -102,44 +106,70 @@ const AgencyRegisterModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 		const code = Math.floor(
 			Math.pow(10, 6 - 1) +
 				Math.random() * (Math.pow(10, 6) - Math.pow(10, 6 - 1) - 1)
-		);
+		).toString();
 		console.log(code);
 		console.log("function run hoja");
 		console.log(isRegistered);
+		var docc = {
+			name: "",
+			dob: "",
+			email: "",
+			agency: "",
+			head: false,
+		};
 		if (!isRegistered) {
 			if (loggedIn) {
+				console.log("logged in");
+				console.log(user);
 				var q = query(
 					collection(db, "users"),
-					where("email", "==", user.email)
+					where("email", "==", user.email),
+					limit(1)
 				);
-				onSnapshot(q, (snapshot: any) => {
-					snapshot.forEach((docu: any) => {
-						setDocc(docu.data());
-						setDocId(docu.id);
-						console.log("usr  doc id" + docId);
-					});
+				console.log("snapshot once?");
+				var snapshot = await getDocs(q);
+				console.log("snanpshow twice?");
+				snapshot.forEach(async (docu: any) => {
+					docc = docu.data();
+					console.log(docc);
+					setDocId(docu.id);
+					if (docc?.email == headEmail) {
+						data = {
+							agencyName: agencyName,
+							headEmail: headEmail,
+							agencyEmail: agencyEmail,
+							agencyLocation: agencyLocation,
+							agencyHeadName: agencyHeadName,
+							agencyCode: code,
+							members: [{ name: docc?.name, email: docc?.email, head: true }],
+						};
+						const userDoc = doc(collection(db, "users"), docu.id);
+						updateDoc(userDoc, {
+							agency: code,
+							head: true,
+						});
+						await addData("agencies", data);
+
+						console.log("head yes agency create 1");
+					} else {
+						data = {
+							agencyName: agencyName,
+							headEmail: headEmail,
+							agencyEmail: agencyEmail,
+							agencyLocation: agencyLocation,
+							agencyHeadName: agencyHeadName,
+							agencyCode: code,
+							members: [{ name: docc?.name, email: docc?.email, head: false }],
+						};
+						const userDoc = doc(collection(db, "users"), docu.id);
+						updateDoc(userDoc, {
+							agency: code,
+						});
+						await addData("agencies", data);
+						console.log("head nno agency create 2");
+					}
 				});
-				if (docc?.email == headEmail) {
-					data = {
-						agencyName: agencyName,
-						headEmail: headEmail,
-						agencyEmail: agencyEmail,
-						agencyLocation: agencyLocation,
-						agencyHeadName: agencyHeadName,
-						agencyCode: code,
-						members: [{ name: docc?.name, email: docc?.email, head: true }],
-					};
-				} else {
-					data = {
-						agencyName: agencyName,
-						headEmail: headEmail,
-						agencyEmail: agencyEmail,
-						agencyLocation: agencyLocation,
-						agencyHeadName: agencyHeadName,
-						agencyCode: code,
-						members: [{ name: docc?.name, email: docc?.email, head: false }],
-					};
-				}
+				console.log(docc);
 			} else {
 				data = {
 					agencyName: agencyName,
@@ -150,8 +180,10 @@ const AgencyRegisterModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 					agencyCode: code,
 					members: [],
 				};
+				await addData("agencies", data);
+				console.log("login nno agency create 3");
 			}
-			await addData("agencies", data);
+			console.log(data);
 
 			setIsRegistered(true);
 			// if (error2) {
@@ -159,7 +191,7 @@ const AgencyRegisterModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 			// }
 			// console.log(result2);
 			alert("Your agency code is " + code);
-			return router.push("/agency");
+			return router.push("/about");
 		}
 	};
 	// onOpen();

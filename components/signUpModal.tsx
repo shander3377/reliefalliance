@@ -50,6 +50,7 @@ import {
 	onSnapshot,
 	updateDoc,
 	doc,
+	getDocs,
 } from "firebase/firestore";
 import { db } from "../config/firebase.config";
 
@@ -115,26 +116,25 @@ const SignUpModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 			where("agencyCode", "==", agency)
 		);
 		console.log(q);
-		onSnapshot(q, (snapshot: any) => {
-			snapshot.forEach((docu: any) => {
-				var agencyDoc = doc(collection(db, "agencies"), docu.id);
-				var memembers = docu.data().members;
-				if (docu.data().headEmail == email) {
-					memembers.push({
-						name: name,
-						email: email,
-						head: false,
-					});
-				} else {
-					memembers.push({
-						name: name,
-						email: email,
-						head: true,
-					});
-				}
-				updateDoc(agencyDoc, {
-					members: memembers,
+		var snapshot = await getDocs(q);
+		snapshot.forEach((docu: any) => {
+			var agencyDoc = doc(collection(db, "agencies"), docu.id);
+			var memembers = docu.data().members;
+			if (docu.data().headEmail == email) {
+				memembers.push({
+					name: name,
+					email: email,
+					head: false,
 				});
+			} else {
+				memembers.push({
+					name: name,
+					email: email,
+					head: true,
+				});
+			}
+			updateDoc(agencyDoc, {
+				members: memembers,
 			});
 		});
 		// if (error2) {
