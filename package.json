@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chatscope/chat-ui-kit-react": "^1.10.1",
+    "@chatscope/chat-ui-kit-styles": "^1.4.0",
+    "@nextui-org/avatar": "^2.0.21",
     "@nextui-org/button": "2.0.18",
     "@nextui-org/card": "^2.0.21",
     "@nextui-org/checkbox": "^2.0.22",
