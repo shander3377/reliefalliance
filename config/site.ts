@@ -2,8 +2,8 @@ export type SiteConfig = typeof siteConfig;
 
 
 export const siteConfig = {
-	name: "Disaster",
-	description: "Mange Disasters.",
+	name: "ReliefAlliance",
+	description: "Manage Disasters.",
 	navMenuItems: [
 		{
 			label: "Profile",
