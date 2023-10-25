@@ -48,8 +48,7 @@ export default function UserPage() {
 					<Divider />
 					<CardBody className="overflow-visible py-4">
 						<p>
-						Amidst the longstanding Israel-Palestine conflict, recent developments hint at a shift towards peace. Diplomatic channels are active, fostering dialogue between the two nations. International pressure and grassroots movements are urging for resolution, prompting leaders to reconsider their approaches. While challenges persist, there’s a growing sense of optimism. Both Israelis and Palestinians, weary of the conflict's toll, are expressing a desire for coexistence. Humanitarian efforts and global mediation are playing crucial roles, offering a glimmer of hope. The world watches closely, hoping for a peaceful resolution, realizing that in this complex web of history and politics, the first steps towards lasting peace have never been more crucial.
-						  <Link href="https://en.wikipedia.org/wiki/History_of_the_Israeli%E2%80%93Palestinian_conflict">Israel-Palestine Conflict</Link> 
+						Amidst the longstanding Israel-Palestine conflict, recent developments hint at a shift towards peace. Diplomatic channels are active, fostering dialogue between the two nations. International pressure and grassroots movements are urging for resolution, prompting leaders to reconsider their approaches. While challenges persist, there’s a growing sense of optimism. Both Israelis and Palestinians, weary of the conflict's toll, are expressing a desire for coexistence. Humanitarian efforts and global mediation are playing crucial roles, offering a glimmer of hope. The world watches closely, hoping for a peaceful resolution, realizing that in this complex web of history and politics, the first steps towards lasting peace have never been more crucial. <Link href="https://en.wikipedia.org/wiki/History_of_the_Israeli%E2%80%93Palestinian_conflict">Israel-Palestine Conflict</Link> 
 						  
 						</p>
 						<Button
@@ -80,8 +79,7 @@ export default function UserPage() {
 					<Divider />
 					<CardBody className="overflow-visible py-4">
 						<p>
-						Tensions between Ukraine and Russia have reached a critical point, raising international concerns. Recent clashes near the border have escalated the conflict, fueling fears of a wider regional crisis. Ukraine, determined to defend its sovereignty, faces a formidable challenge in navigating diplomatic solutions. The international community closely monitors this situation, urging restraint and peaceful dialogue to avoid further escalation. As geopolitical complexities intensify, there's a pressing need for careful diplomacy and international cooperation to quell the rising tensions, ensuring stability and security in the region.
-							 <Link href="https://en.wikipedia.org/wiki/Russo-Ukrainian_War">Russian-Ukraine Conflict</Link> 
+						Tensions between Ukraine and Russia have reached a critical point, raising international concerns. Recent clashes near the border have escalated the conflict, fueling fears of a wider regional crisis. Ukraine, determined to defend its sovereignty, faces a formidable challenge in navigating diplomatic solutions. The international community closely monitors this situation, urging restraint and peaceful dialogue to avoid further escalation. As geopolitical complexities intensify, there's a pressing need for careful diplomacy and international cooperation to quell the rising tensions, ensuring stability and security in the region. <Link href="https://en.wikipedia.org/wiki/Russo-Ukrainian_War">Russian-Ukraine Conflict</Link> 
 							 
 						</p>
 						<Button
