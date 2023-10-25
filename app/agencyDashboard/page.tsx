@@ -239,6 +239,8 @@ export default function AgencyDashboardPage() {
 					</TableBody>
 				</Table>
 			);
+		} else {
+			return null;
 		}
 	};
 
