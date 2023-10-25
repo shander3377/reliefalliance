@@ -266,6 +266,7 @@ export default function AgencyDashboardPage() {
 				crisisId: id,
 			});
 		});
+		alert("Crisis Created");
 	}
 	const [disabledKey, setDisabledKey] = React.useState("create");
 
@@ -294,7 +295,9 @@ export default function AgencyDashboardPage() {
 						<Tab title="All Crises" key="all">
 							<GetCrisis />
 						</Tab>
-						<Tab title="Neighboring Crises" key="near" />
+						<Tab title="Neighboring Crises" key="near">
+							<GetCrisis />
+						</Tab>
 						<Tab title="Create Cisis" key="create">
 							<div>
 								<Input

@@ -191,7 +191,7 @@ const AgencyRegisterModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 			// }
 			// console.log(result2);
 			alert("Your agency code is " + code);
-			return router.push("/about");
+			return router.push("/agencyDashboard");
 		}
 	};
 	// onOpen();
