@@ -175,7 +175,6 @@ const SignUpModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 						}}
 					/>
 					<Input
-						autoFocus
 						endContent={
 							<MailIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
 						}
@@ -221,7 +220,6 @@ const SignUpModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 					</Checkbox>
 					{isSelected ? (
 						<Input
-							autoFocus
 							endContent={
 								<MailIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
 							}
