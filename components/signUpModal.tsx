@@ -149,7 +149,7 @@ const SignUpModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 	return (
 		<Modal isOpen={isOpen} onClose={onClose} placement="top-center">
 			<ModalContent>
-				<ModalHeader className="flex flex-col gap-1">Login</ModalHeader>
+				<ModalHeader className="flex flex-col gap-1">Sign Up</ModalHeader>
 				<ModalBody>
 					<Input
 						autoFocus
@@ -169,7 +169,6 @@ const SignUpModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 						}
 						label="DOB"
 						placeholder="Enter your date of birth"
-						type="password"
 						variant="bordered"
 						onValueChange={(value: string) => {
 							setDob(value);
