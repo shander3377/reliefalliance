@@ -341,10 +341,10 @@ export default function AgencyDashboardPage() {
 									onPress={() => {
 										if (
 											title.length > 2 &&
-											title.length < 8 &&
+											title.length < 12 &&
 											description.length > 2 &&
 											description.length < 20 &&
-											location.length > 6
+											location.length > 5
 										) {
 											console.log("sabh valid hai");
 											createCrisis();
